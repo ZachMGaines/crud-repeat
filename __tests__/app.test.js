@@ -51,5 +51,23 @@ describe('demo routes', () => {
 
   });
 
+  it('updates a beer by id via PUT', async () => {
+    const rainier = await Beer.insert({
+      name: 'rainier',
+      abv: '4.8%',
+      color: 'clear'
+    });
+
+    const newRainier = {
+      id: 1,
+      name: 'rainier',
+      abv: '10%',
+      color: 'dark'
+    };
+
+    const res = await request(app).put(`/api/v1/beers/${rainier.id}`).send(newRainier);
+    expect(res.body).toEqual(newRainier);
+  });
+
 });
 
