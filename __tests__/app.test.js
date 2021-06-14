@@ -9,19 +9,10 @@ describe('demo routes', () => {
   });
 
   it('creates a beer via POST', async () => {
-    const res = request(app)
+    const res = await request(app)
       .post('/api/v1/beers')
-      .send({
-        name: 'barney',
-        abv: '9%',
-        color: 'dark'
-      });
-    expect(res.body).toEqual({
-      id: '1',
-      name: 'barney',
-      abv: '9%',
-      color: 'dark'
-    });
+      .send({ name: 'barney', abv: '9%', color: 'dark' });
+    expect(res.body).toEqual({ id: '1', name: 'barney', abv: '9%', color: 'dark' });
   });
 
 });
