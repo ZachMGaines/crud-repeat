@@ -26,5 +26,30 @@ describe('demo routes', () => {
     expect(res.body).toEqual(beer);
   });
 
+  it('finds all beers via GET', async () => {
+    const rainier = await Beer.insert({
+      name: 'modelo',
+      abv: '4.8%',
+      color: 'clear'
+    });
+
+    const modelo = await Beer.insert({
+      name: 'modelo',
+      abv: '4.5%',
+      color: 'clear'
+    });
+
+    const zach = await Beer.insert({
+      name: 'zach',
+      abv: '100%',
+      color: 'fiery-green'
+    });
+
+    const res = await request(app).get('/api/v1/beers');
+    expect(res.body).toEqual([rainier, modelo, zach]);
+
+
+  });
+
 });
 
