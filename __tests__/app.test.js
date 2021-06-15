@@ -69,5 +69,18 @@ describe('demo routes', () => {
     expect(res.body).toEqual(newRainier);
   });
 
+  it('deletes a beer!', async () => {
+    const rainier = await Beer.insert({
+      name: 'rainier',
+      abv: '4.8%',
+      color: 'clear'
+    });
+    const res = await request(app)
+      .delete(`/api/v1/beers/${rainier.id}`)
+      .send(rainier);
+
+    expect(res.body).toEqual(rainier);
+  });
+
 });
 
