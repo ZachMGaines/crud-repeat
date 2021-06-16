@@ -46,7 +46,7 @@ describe('demo routes', () => {
       price: 4000,
       color: 'black'
     });
-    const res = await request(app).get('./api/v1/cars');
+    const res = await request(app).get('/api/v1/cars');
     expect(res.body).toEqual([viper, mclaren, toyota]);
 
   });
