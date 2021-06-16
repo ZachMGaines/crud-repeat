@@ -28,5 +28,27 @@ describe('demo routes', () => {
     expect(res.body).toEqual(car);
   });
 
+  it('finds all cars via GET', async () => {
+    const viper = await Car.insert({
+      name: 'viper',
+      price: 450000,
+      color: 'blue'
+    });
+
+    const mclaren = await Car.insert({
+      name: 'mclaren',
+      price: 1000000,
+      color: 'green'
+    });
+
+    const toyota = await Car.insert({
+      name: 'toyota',
+      price: 4000,
+      color: 'black'
+    });
+    const res = await request(app).get('./api/v1/cars');
+    expect(res.body).toEqual([viper, mclaren, toyota]);
+
+  });
 
 });
