@@ -9,14 +9,14 @@ describe('demo routes', () => {
     return setup(pool);
   });
 
-  it('creates a beer via POST', async () => {
+  it.skip('creates a beer via POST', async () => {
     const res = await request(app)
       .post('/api/v1/beers')
       .send({ name: 'barney', abv: '9%', color: 'dark' });
     expect(res.body).toEqual({ id: 1, name: 'barney', abv: '9%', color: 'dark' });
   });
 
-  it('finds a beer via GET', async () => {
+  it.skip('finds a beer via GET', async () => {
     const beer = await Beer.insert({
       name: 'lagunitas',
       abv: '6.8%',
@@ -26,7 +26,7 @@ describe('demo routes', () => {
     expect(res.body).toEqual(beer);
   });
 
-  it('finds all beers via GET', async () => {
+  it.skip('finds all beers via GET', async () => {
     const rainier = await Beer.insert({
       name: 'modelo',
       abv: '4.8%',
@@ -51,7 +51,7 @@ describe('demo routes', () => {
 
   });
 
-  it('updates a beer by id via PUT', async () => {
+  it.skip('updates a beer by id via PUT', async () => {
     const rainier = await Beer.insert({
       name: 'rainier',
       abv: '4.8%',
@@ -69,7 +69,7 @@ describe('demo routes', () => {
     expect(res.body).toEqual(newRainier);
   });
 
-  it('deletes a beer!', async () => {
+  it.skip('deletes a beer!', async () => {
     const rainier = await Beer.insert({
       name: 'rainier',
       abv: '4.8%',
