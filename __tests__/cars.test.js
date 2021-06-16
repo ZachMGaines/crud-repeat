@@ -51,4 +51,19 @@ describe('demo routes', () => {
 
   });
 
+  it('updates car via PUT', async () => {
+    const viper = await Car.insert({
+      name: 'viper',
+      price: 450000,
+      color: 'blue'
+    });
+    const newViper = {
+      name: 'viper',
+      price: 400000,
+      color: 'white'
+    };
+    const res = await request(app).put(`/api/v1/cars/${viper.id}`).send(newViper);
+    expect(res.body).toEqual(newViper);
+  });
+
 });
