@@ -17,5 +17,14 @@ describe('demo routes', () => {
     expect(res.body).toEqual({ id: 1, name: 'kobe bryant', team: 'lakers', age: 29 });
   });
 
+  it('finds a beer via GET', async () => {
+    const player = await Player.insert({
+      name: 'kobe bryant',
+      team: 'lakers',
+      age: 29
+    });
+    const res = await request(app).get(`/api/v1/players/${player.id}`);
+    expect(res.body).toEqual(player);
+  });
 
 });
