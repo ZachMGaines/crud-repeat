@@ -11,14 +11,14 @@ describe('demo routes', () => {
     return setup(pool);
   });
 
-  it('CREATES a car via POST', async () => {
+  it.skip('CREATES a car via POST', async () => {
     const res = await request(app)
       .post('/api/v1/cars')
       .send({ name: 'porsche', price: 250000, color: 'silver' });
     expect(res.body).toEqual({ id: 1, name: 'porsche', price: 250000, color: 'silver' });
   });
 
-  it('finds a car via GET', async () => {
+  it.skip('finds a car via GET', async () => {
     const car = await Car.insert({
       name: 'viper',
       price: 450000,
@@ -28,7 +28,7 @@ describe('demo routes', () => {
     expect(res.body).toEqual(car);
   });
 
-  it('finds all cars via GET', async () => {
+  it.skip('finds all cars via GET', async () => {
     const viper = await Car.insert({
       name: 'viper',
       price: 450000,
@@ -51,7 +51,7 @@ describe('demo routes', () => {
 
   });
 
-  it('updates car via PUT', async () => {
+  it.skip('updates car via PUT', async () => {
     const viper = await Car.insert({
       name: 'viper',
       price: 450000,
@@ -69,7 +69,7 @@ describe('demo routes', () => {
 
   });
 
-  it('deletes a car via DELETE', async () => {
+  it.skip('deletes a car via DELETE', async () => {
 
     const viper = await Car.insert({
       name: 'viper',
