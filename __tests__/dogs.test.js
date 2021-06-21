@@ -67,4 +67,19 @@ describe('demo routes', () => {
 
   });
 
+  it('deletes a dog via DELETE', async () => {
+
+    const spacey = await Dog.insert({
+      name: 'spacey',
+      price: 500,
+      color: 'black'
+    });
+    const res = await request(app)
+      .delete(`/api/v1/dogs/${spacey.id}`)
+      .send(spacey);
+
+    expect(res.body).toEqual(spacey);
+
+  });
+
 });
