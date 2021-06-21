@@ -67,4 +67,19 @@ describe('demo routes', () => {
 
   });
 
+  it('deletes a flower via DELETE', async () => {
+
+    const flower = await Flower.insert({
+      name: 'lilly',
+      price: 450,
+      color: 'blue'
+    });
+    const res = await request(app)
+      .delete(`/api/v1/flowers/${flower.id}`)
+      .send(flower);
+
+    expect(res.body).toEqual(flower);
+
+  });
+
 });
