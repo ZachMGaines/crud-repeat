@@ -48,4 +48,19 @@ describe('demo routes', () => {
     const res = await request(app).get('/api/v1/players');
     expect(res.body).toEqual([kobe, brady, lebron]);
   });
+
+  it('updates player via PUT', async () => {
+    const kobe = await Player.insert({
+      name: 'kobe bryant',
+      team: 'lakers',
+      age: 29
+    });
+    const newKobe = {
+      name: 'kobe bryant',
+      team: 'lakers',
+      age: 29
+    };
+    const res = await request(app).put(`/api/players/${kobe.id}`).send(newKobe);
+    expect(res.body).toEqual({ ...newKobe, id: 1 });
+  });
 });
