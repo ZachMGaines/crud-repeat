@@ -16,5 +16,14 @@ describe('demo routes', () => {
     expect(res.body).toEqual({ id: 1, name: 'spacey', price: 500, color: 'black' });
   });
 
+  it('finds a dog via GET', async () => {
+    const dog = await Dog.insert({
+      name: 'spacey',
+      price: 500,
+      color: 'black'
+    });
+    const res = await request(app).get(`/api/v1/dogs/${dog.id}`);
+    expect(res.body).toEqual(dog);
+  });
 
 });
