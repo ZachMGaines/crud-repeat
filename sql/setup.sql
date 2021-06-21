@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS beers, cars, players, dogs;
+DROP TABLE IF EXISTS beers, cars, players, dogs, flowers;
 
 CREATE TABLE beers (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -22,6 +22,13 @@ CREATE TABLE players (
 );
 
 CREATE TABLE dogs (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  price INT NOT NULL,
+  color TEXT
+);
+
+CREATE TABLE flowers (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   name TEXT NOT NULL,
   price INT NOT NULL,
