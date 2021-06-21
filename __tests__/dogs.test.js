@@ -49,5 +49,22 @@ describe('demo routes', () => {
 
   });
 
+  it('updates car via PUT', async () => {
+    const spacey = await Dog.insert({
+      name: 'spacey',
+      price: 500,
+      color: 'black'
+    });
+
+    const newSpacey = {
+      name: 'spacey',
+      price: 1000,
+      color: 'black and white'
+    };
+
+    const res = await request(app).put(`/api/v1/dogs/${spacey.id}`).send(newSpacey);
+    expect(res.body).toEqual({ ...newSpacey, id: 1 });
+
+  });
 
 });
