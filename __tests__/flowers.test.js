@@ -15,4 +15,14 @@ describe('demo routes', () => {
       .send({ name: 'lilly', price: 20, color: 'white' });
     expect(res.body).toEqual({ id: 1, name: 'lilly', price: 20, color: 'white' });
   });
+
+  it('finds a flower via GET', async () => {
+    const flower = await Flower.insert({
+      name: 'lilly',
+      price: 500,
+      color: 'white'
+    });
+    const res = await request(app).get(`/api/v1/flowers/${flower.id}`);
+    expect(res.body).toEqual(flower);
+  });
 });
