@@ -17,7 +17,7 @@ describe('demo routes', () => {
     expect(res.body).toEqual({ id: 1, name: 'kobe bryant', team: 'lakers', age: 29 });
   });
 
-  it('finds a beer via GET', async () => {
+  it('finds a player via GET', async () => {
     const player = await Player.insert({
       name: 'kobe bryant',
       team: 'lakers',
@@ -27,4 +27,25 @@ describe('demo routes', () => {
     expect(res.body).toEqual(player);
   });
 
+  it('finds all players via Get', async () => {
+    const kobe = await Player.insert({
+      name: 'kobe bryant',
+      team: 'lakers',
+      age: 29
+    });
+
+    const brady = await Player.insert({
+      name: 'tom brady',
+      team: 'new england',
+      age: 35
+    });
+
+    const lebron = await Player.insert({
+      name: 'lebron',
+      team: 'cavaliers',
+      age: 24
+    });
+    const res = await request(app).get('/api/v1/players');
+    expect(res.body).toEqual([kobe, brady, lebron]);
+  });
 });

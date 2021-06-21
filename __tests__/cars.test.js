@@ -28,7 +28,7 @@ describe('demo routes', () => {
     expect(res.body).toEqual(car);
   });
 
-  it.skip('finds all cars via GET', async () => {
+  it('finds all cars via GET', async () => {
     const viper = await Car.insert({
       name: 'viper',
       price: 450000,
