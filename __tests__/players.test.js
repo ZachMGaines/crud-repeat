@@ -55,12 +55,13 @@ describe('demo routes', () => {
       team: 'lakers',
       age: 29
     });
+
     const newKobe = {
-      name: 'kobe bryant',
+      name: 'kobe bean bryant',
       team: 'lakers',
-      age: 29
+      age: 32
     };
-    const res = await request(app).put(`/api/players/${kobe.id}`).send(newKobe);
+    const res = await request(app).put(`/api/v1/players/${kobe.id}`).send(newKobe);
     expect(res.body).toEqual({ ...newKobe, id: 1 });
   });
 });
