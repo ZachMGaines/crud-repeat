@@ -49,4 +49,22 @@ describe('demo routes', () => {
 
   });
 
+  it('updates flower via PUT', async () => {
+    const flower = await Flower.insert({
+      name: 'lilly',
+      price: 40,
+      color: 'white'
+    });
+
+    const newFlower = {
+      name: 'lilly',
+      price: 400,
+      color: 'red'
+    };
+
+    const res = await request(app).put(`/api/v1/flowers/${flower.id}`).send(newFlower);
+    expect(res.body).toEqual({ ...newFlower, id: 1 });
+
+  });
+
 });
