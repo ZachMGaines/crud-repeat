@@ -64,4 +64,17 @@ describe('demo routes', () => {
     const res = await request(app).put(`/api/v1/players/${kobe.id}`).send(newKobe);
     expect(res.body).toEqual({ ...newKobe, id: 1 });
   });
+
+  it('deletes a player via DELETE', async () => {
+    const kobe = await Player.insert({
+      name: 'kobe',
+      team: 'lakers',
+      age: 29
+    });
+    const res = await request(app)
+      .delete(`/api/v1/players/${kobe.id}`)
+      .send(kobe);
+
+    expect(res.body).toEqual(kobe);
+  });
 });
