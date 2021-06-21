@@ -25,4 +25,28 @@ describe('demo routes', () => {
     const res = await request(app).get(`/api/v1/flowers/${flower.id}`);
     expect(res.body).toEqual(flower);
   });
+
+  it('finds all cars via GET', async () => {
+    const lilly = await Flower.insert({
+      name: 'lilly',
+      price: 20,
+      color: 'white'
+    });
+
+    const rose = await Flower.insert({
+      name: 'rose',
+      price: 40,
+      color: 'black'
+    });
+
+    const daisy = await Flower.insert({
+      name: 'daisy',
+      price: 34,
+      color: 'orange'
+    });
+    const res = await request(app).get('/api/v1/flowers');
+    expect(res.body).toEqual([lilly, rose, daisy]);
+
+  });
+
 });
